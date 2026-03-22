@@ -2,7 +2,7 @@
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning
 **Created**: 2026-03-22
-**Feature**: [/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/spec.md](../spec.md)
+**Feature**: [specs/001-detect-breaking-changes/spec.md](../spec.md)
 
 ## Content Quality
 

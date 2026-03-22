@@ -2,12 +2,12 @@
 
 ## Goal
 
-Plan and validate the `001-detect-breaking-changes` feature for `/Users/scott/code/github/pwshaddict/PsModuleMigrator` before implementation begins. The implementation will ship a PowerShell module `PsModuleMigrator` that exports `Find-ModuleUpgradeImpact`.
+Plan and validate the `001-detect-breaking-changes` feature for `.` before implementation begins. The implementation will ship a PowerShell module `PsModuleMigrator` that exports `Find-ModuleUpgradeImpact`.
 
 ## Planned Source Layout
 
 ```text
-/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/
+src/PsModuleMigrator/
 ├── PsModuleMigrator.psd1
 ├── PsModuleMigrator.psm1
 ├── Public/Find-ModuleUpgradeImpact.ps1
@@ -30,27 +30,27 @@ Find-ModuleUpgradeImpact -ModuleName <string> -Path <string> [-TargetVersion <st
 ### 1. Analyze a single file
 
 ```powershell
-Import-Module /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psd1 -Force
-Find-ModuleUpgradeImpact -ModuleName Az.Storage -Path /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/projects/single-file/sample.ps1 -TargetVersion 5.0.0
+Import-Module src/PsModuleMigrator/PsModuleMigrator.psd1 -Force
+Find-ModuleUpgradeImpact -ModuleName Az.Storage -Path tests/fixtures/projects/single-file/sample.ps1 -TargetVersion 5.0.0
 ```
 
 ### 2. Analyze a folder
 
 ```powershell
-Find-ModuleUpgradeImpact -ModuleName Pester -Path /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/projects/folder-sample
+Find-ModuleUpgradeImpact -ModuleName Pester -Path tests/fixtures/projects/folder-sample
 ```
 
 ### 3. Analyze a local git repository
 
 ```powershell
-Find-ModuleUpgradeImpact -ModuleName Microsoft.Graph.Authentication -Path /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/repositories/sample-repo -TargetVersion 2.0.0
+Find-ModuleUpgradeImpact -ModuleName Microsoft.Graph.Authentication -Path tests/fixtures/repositories/sample-repo -TargetVersion 2.0.0
 ```
 
 ## TDD Workflow
 
-1. Add or update a failing Pester test in `/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit`, `/contract`, or `/integration` before creating production code.
+1. Add or update a failing Pester test in `tests/unit`, `/contract`, or `/integration` before creating production code.
 2. Confirm the new test fails for the intended reason.
-3. Implement the minimum code under `/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator` to make the test pass.
+3. Implement the minimum code under `src/PsModuleMigrator` to make the test pass.
 4. Refactor with all tests green.
 5. Re-run coverage and confirm the project remains at or above 90%.
 
@@ -59,31 +59,31 @@ Find-ModuleUpgradeImpact -ModuleName Microsoft.Graph.Authentication -Path /Users
 ### Branch check
 
 ```bash
-git -C /Users/scott/code/github/pwshaddict/PsModuleMigrator --no-pager branch --show-current
+git -C . --no-pager branch --show-current
 ```
 
 ### Unit tests
 
 ```bash
-pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit' -Output Detailed"
+pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path 'tests/unit' -Output Detailed"
 ```
 
 ### Contract tests
 
 ```bash
-pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract' -Output Detailed"
+pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path 'tests/contract' -Output Detailed"
 ```
 
 ### Integration tests
 
 ```bash
-pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration' -Output Detailed"
+pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path 'tests/integration' -Output Detailed"
 ```
 
 ### Coverage gate
 
 ```bash
-pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run.Path = '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests'; $config.CodeCoverage.Enabled = $true; $config.CodeCoverage.Path = @('/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/*.ps1','/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/*.ps1'); $result = Invoke-Pester -Configuration $config; if ($result.CodeCoverage.CoveragePercent -lt 90) { throw 'Coverage below 90%' }"
+pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run.Path = 'tests'; $config.CodeCoverage.Enabled = $true; $config.CodeCoverage.Path = @('src/PsModuleMigrator/Public/*.ps1','src/PsModuleMigrator/Private/*.ps1'); $result = Invoke-Pester -Configuration $config; if ($result.CodeCoverage.CoveragePercent -lt 90) { throw 'Coverage below 90%' }"
 ```
 
 ## Planned Test Mapping
@@ -94,8 +94,8 @@ pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run
 
 ## Generated Planning Artifacts
 
-- Plan: `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/plan.md`
-- Research: `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/research.md`
-- Data model: `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/data-model.md`
-- Contract: `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/contracts/find-module-upgrade-impact.md`
-- Quickstart: `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/quickstart.md`
+- Plan: `specs/001-detect-breaking-changes/plan.md`
+- Research: `specs/001-detect-breaking-changes/research.md`
+- Data model: `specs/001-detect-breaking-changes/data-model.md`
+- Contract: `specs/001-detect-breaking-changes/contracts/find-module-upgrade-impact.md`
+- Quickstart: `specs/001-detect-breaking-changes/quickstart.md`

@@ -1,7 +1,7 @@
 # Implementation Plan: Module Upgrade Breaking-Change Analysis
 
-**Branch**: `001-detect-breaking-changes` | **Date**: 2026-03-22 | **Spec**: `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/spec.md`
-**Input**: Feature specification from `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/spec.md`
+**Branch**: `001-detect-breaking-changes` | **Date**: 2026-03-22 | **Spec**: `specs/001-detect-breaking-changes/spec.md`
+**Input**: Feature specification from `specs/001-detect-breaking-changes/spec.md`
 
 ## Summary
 
@@ -35,10 +35,10 @@ Create a cross-platform PowerShell 7.4+ module named `PsModuleMigrator` with a p
 **Reviewer Validation Commands**
 
 ```bash
-git -C /Users/scott/code/github/pwshaddict/PsModuleMigrator --no-pager branch --show-current
-pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit' -Output Detailed"
-pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract' -Output Detailed"
-pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run.Path = '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests'; $config.CodeCoverage.Enabled = $true; $config.CodeCoverage.Path = @('/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/*.ps1','/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/*.ps1'); Invoke-Pester -Configuration $config"
+git -C . --no-pager branch --show-current
+pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path 'tests/unit' -Output Detailed"
+pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path 'tests/contract' -Output Detailed"
+pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run.Path = 'tests'; $config.CodeCoverage.Enabled = $true; $config.CodeCoverage.Path = @('src/PsModuleMigrator/Public/*.ps1','src/PsModuleMigrator/Private/*.ps1'); Invoke-Pester -Configuration $config"
 ```
 
 ## Project Structure
@@ -46,7 +46,7 @@ pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run
 ### Documentation (this feature)
 
 ```text
-/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/
+specs/001-detect-breaking-changes/
 ├── plan.md
 ├── research.md
 ├── data-model.md
@@ -59,7 +59,7 @@ pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run
 ### Source Code (repository root)
 
 ```text
-/Users/scott/code/github/pwshaddict/PsModuleMigrator/
+
 ├── src/
 │   └── PsModuleMigrator/
 │       ├── PsModuleMigrator.psd1
@@ -85,11 +85,11 @@ pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run
         └── repositories/
 ```
 
-**Structure Decision**: Use a single PowerShell module project rooted at `/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator` with clear `Public` and `Private` function boundaries, plus `unit`, `contract`, and `integration` Pester suites under `/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests`. This structure matches the repository's greenfield state, makes red-green-refactor slices small and reviewable, and supports direct coverage enforcement on the feature's exported and internal commands.
+**Structure Decision**: Use a single PowerShell module project rooted at `src/PsModuleMigrator` with clear `Public` and `Private` function boundaries, plus `unit`, `contract`, and `integration` Pester suites under `tests`. This structure matches the repository's greenfield state, makes red-green-refactor slices small and reviewable, and supports direct coverage enforcement on the feature's exported and internal commands.
 
 ## Phase 0 Research Summary
 
-Phase 0 resolved all technical unknowns in `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/research.md`:
+Phase 0 resolved all technical unknowns in `specs/001-detect-breaking-changes/research.md`:
 
 - Build the feature as a PowerShell-native module instead of introducing another runtime.
 - Resolve module versions with `Microsoft.PowerShell.PSResourceGet` and isolate module-surface inspection from the caller session.
@@ -100,9 +100,9 @@ Phase 0 resolved all technical unknowns in `/Users/scott/code/github/pwshaddict/
 
 Phase 1 artifacts are produced in:
 
-- `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/data-model.md`
-- `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/contracts/find-module-upgrade-impact.md`
-- `/Users/scott/code/github/pwshaddict/PsModuleMigrator/specs/001-detect-breaking-changes/quickstart.md`
+- `specs/001-detect-breaking-changes/data-model.md`
+- `specs/001-detect-breaking-changes/contracts/find-module-upgrade-impact.md`
+- `specs/001-detect-breaking-changes/quickstart.md`
 
 The design formalizes the analysis request lifecycle, the report contract returned by `Find-ModuleUpgradeImpact`, and the validation workflow reviewers will use to reproduce TDD and coverage compliance.
 

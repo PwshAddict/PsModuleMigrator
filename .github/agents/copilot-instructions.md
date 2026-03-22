@@ -40,11 +40,11 @@ tests/
 
 ## Commands
 
-- `git -C /Users/scott/code/github/pwshaddict/PsModuleMigrator --no-pager branch --show-current`
-- `pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit' -Output Detailed"`
-- `pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract' -Output Detailed"`
-- `pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration' -Output Detailed"`
-- `pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run.Path = '/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests'; $config.CodeCoverage.Enabled = $true; $config.CodeCoverage.Path = @('/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/*.ps1','/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/*.ps1'); $result = Invoke-Pester -Configuration $config; if ($result.CodeCoverage.CoveragePercent -lt 90) { throw 'Coverage below 90%' }"`
+- `git -C . --no-pager branch --show-current`
+- `pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path 'tests/unit' -Output Detailed"`
+- `pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path 'tests/contract' -Output Detailed"`
+- `pwsh -NoLogo -NoProfile -Command "Invoke-Pester -Path 'tests/integration' -Output Detailed"`
+- `pwsh -NoLogo -NoProfile -Command "$config = New-PesterConfiguration; $config.Run.Path = 'tests'; $config.CodeCoverage.Enabled = $true; $config.CodeCoverage.Path = @('src/PsModuleMigrator/Public/*.ps1','src/PsModuleMigrator/Private/*.ps1'); $result = Invoke-Pester -Configuration $config; if ($result.CodeCoverage.CoveragePercent -lt 90) { throw 'Coverage below 90%' }"`
 
 ## Code Style
 

@@ -113,6 +113,6 @@ Each implementation slice must add failing-first Pester tests that prove this co
 ## Example Invocation
 
 ```powershell
-Import-Module /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psd1 -Force
-Find-ModuleUpgradeImpact -ModuleName Az.Storage -Path /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/repositories/sample-repo -TargetVersion 5.0.0
+Import-Module src/PsModuleMigrator/PsModuleMigrator.psd1 -Force
+Find-ModuleUpgradeImpact -ModuleName Az.Storage -Path tests/fixtures/repositories/sample-repo -TargetVersion 5.0.0
 ```
