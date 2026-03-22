@@ -11,11 +11,11 @@
 
 **Purpose**: Establish the PowerShell module shell, reusable test harness, and coverage gate scaffolding before any story work starts.
 
-- [ ] T001 Create the module manifest scaffold in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psd1
-- [ ] T002 Create the module loader scaffold in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psm1
-- [ ] T003 [P] Create shared Pester helper functions in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/TestHelpers.psm1
-- [ ] T004 [P] Create the repository coverage gate runner in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
-- [ ] T005 [P] Create fixture placeholder files in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/.gitkeep, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/projects/.gitkeep, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/repositories/.gitkeep
+- [X] T001 Create the module manifest scaffold in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psd1
+- [X] T002 Create the module loader scaffold in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psm1
+- [X] T003 [P] Create shared Pester helper functions in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/TestHelpers.psm1
+- [X] T004 [P] Create the repository coverage gate runner in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
+- [X] T005 [P] Create fixture placeholder files in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/.gitkeep, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/projects/.gitkeep, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/repositories/.gitkeep
 
 ---
 
@@ -25,12 +25,12 @@
 
 **⚠️ CRITICAL**: Complete this phase before starting any user story work.
 
-- [ ] T006 Create versioned comparison fixtures in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/Az.Storage/4.0.0/Az.Storage.psd1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/Az.Storage/5.0.0/Az.Storage.psd1
-- [ ] T007 [P] Implement analysis request and module version context resolution in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Resolve-ModuleVersionContext.ps1
-- [ ] T008 [P] Implement isolated module surface export in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Export-ModuleSurface.ps1
-- [ ] T009 [P] Implement structural breaking-change comparison in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Compare-ModuleSurface.ps1
-- [ ] T010 [P] Implement AnalysisRequest, AnalysisResult, and BreakingChangeFinding builders in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/New-UpgradeImpactReport.ps1
-- [ ] T011 Wire public/private function loading and exports in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psm1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psd1
+- [X] T006 Create versioned comparison fixtures in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/Az.Storage/4.0.0/Az.Storage.psd1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/Az.Storage/5.0.0/Az.Storage.psd1
+- [X] T007 [P] Implement analysis request and module version context resolution in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Resolve-ModuleVersionContext.ps1
+- [X] T008 [P] Implement isolated module surface export in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Export-ModuleSurface.ps1
+- [X] T009 [P] Implement structural breaking-change comparison in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Compare-ModuleSurface.ps1
+- [X] T010 [P] Implement AnalysisRequest, AnalysisResult, and BreakingChangeFinding builders in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/New-UpgradeImpactReport.ps1
+- [X] T011 Wire public/private function loading and exports in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psm1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/PsModuleMigrator.psd1
 
 **Checkpoint**: Module version resolution, surface export, diffing, and report shaping are available for story implementation.
 
@@ -46,18 +46,18 @@
 
 > **MANDATORY**: Write these tests first, prove they fail for the intended reason, then implement the story.
 
-- [ ] T012 [P] [US1] Add failing AST and local-target unit coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Find-CodebaseModuleUsage.Local.Tests.ps1
-- [ ] T013 [P] [US1] Add failing success and no-findings contract coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Local.Contract.Tests.ps1
-- [ ] T014 [P] [US1] Add failing single-file and folder integration coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.LocalTargets.Tests.ps1
-- [ ] T015 [US1] Run failing-first local-path tests in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Find-CodebaseModuleUsage.Local.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Local.Contract.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.LocalTargets.Tests.ps1
+- [X] T012 [P] [US1] Add failing AST and local-target unit coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Find-CodebaseModuleUsage.Local.Tests.ps1
+- [X] T013 [P] [US1] Add failing success and no-findings contract coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Local.Contract.Tests.ps1
+- [X] T014 [P] [US1] Add failing single-file and folder integration coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.LocalTargets.Tests.ps1
+- [X] T015 [US1] Run failing-first local-path tests in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Find-CodebaseModuleUsage.Local.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Local.Contract.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.LocalTargets.Tests.ps1
 
 ### Implementation for User Story 1
 
-- [ ] T016 [P] [US1] Seed local analysis fixtures in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/projects/single-file/sample.ps1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/projects/folder-sample/Invoke-Sample.ps1
-- [ ] T017 [US1] Implement file and folder target discovery in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Get-AnalysisTargetFiles.ps1
-- [ ] T018 [US1] Implement AST-first command and parameter usage matching for local targets in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Find-CodebaseModuleUsage.ps1
-- [ ] T019 [US1] Implement local-path orchestration and no-findings result handling in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1
-- [ ] T020 [US1] Run local-path validation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Find-CodebaseModuleUsage.Local.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Local.Contract.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.LocalTargets.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
+- [X] T016 [P] [US1] Seed local analysis fixtures in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/projects/single-file/sample.ps1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/projects/folder-sample/Invoke-Sample.ps1
+- [X] T017 [US1] Implement file and folder target discovery in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Get-AnalysisTargetFiles.ps1
+- [X] T018 [US1] Implement AST-first command and parameter usage matching for local targets in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Find-CodebaseModuleUsage.ps1
+- [X] T019 [US1] Implement local-path orchestration and no-findings result handling in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1
+- [X] T020 [US1] Run local-path validation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Find-CodebaseModuleUsage.Local.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Local.Contract.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.LocalTargets.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
 
 **Checkpoint**: User Story 1 delivers the MVP for file and folder analysis with reproducible failing-first evidence and coverage validation.
 
@@ -71,17 +71,17 @@
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T021 [P] [US2] Add failing repository enumeration unit coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Get-AnalysisTargetFiles.Repository.Tests.ps1
-- [ ] T022 [P] [US2] Add failing repository result contract coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Repository.Contract.Tests.ps1
-- [ ] T023 [P] [US2] Add failing repository findings and no-usage integration coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.Repository.Tests.ps1
-- [ ] T024 [US2] Run failing-first repository tests in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Get-AnalysisTargetFiles.Repository.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Repository.Contract.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.Repository.Tests.ps1
+- [X] T021 [P] [US2] Add failing repository enumeration unit coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Get-AnalysisTargetFiles.Repository.Tests.ps1
+- [X] T022 [P] [US2] Add failing repository result contract coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Repository.Contract.Tests.ps1
+- [X] T023 [P] [US2] Add failing repository findings and no-usage integration coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.Repository.Tests.ps1
+- [X] T024 [US2] Run failing-first repository tests in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Get-AnalysisTargetFiles.Repository.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Repository.Contract.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.Repository.Tests.ps1
 
 ### Implementation for User Story 2
 
-- [ ] T025 [P] [US2] Seed repository fixture scripts in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/repositories/sample-repo/src/Invoke-RepoSample.ps1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/repositories/sample-repo/src/NoUsage.ps1
-- [ ] T026 [US2] Extend repository target discovery and git ls-files fallback handling in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Get-AnalysisTargetFiles.ps1
-- [ ] T027 [US2] Extend repository-scale usage aggregation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Find-CodebaseModuleUsage.ps1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1
-- [ ] T028 [US2] Run repository validation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Get-AnalysisTargetFiles.Repository.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Repository.Contract.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.Repository.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
+- [X] T025 [P] [US2] Seed repository fixture scripts in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/repositories/sample-repo/src/Invoke-RepoSample.ps1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/repositories/sample-repo/src/NoUsage.ps1
+- [X] T026 [US2] Extend repository target discovery and git ls-files fallback handling in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Get-AnalysisTargetFiles.ps1
+- [X] T027 [US2] Extend repository-scale usage aggregation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Find-CodebaseModuleUsage.ps1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1
+- [X] T028 [US2] Run repository validation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Get-AnalysisTargetFiles.Repository.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Repository.Contract.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.Repository.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
 
 **Checkpoint**: User Story 2 independently validates repository-target analysis without requiring manual file enumeration.
 
@@ -95,18 +95,18 @@
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T029 [P] [US3] Add failing explicit-version unit coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Resolve-ModuleVersionContext.Version.Tests.ps1
-- [ ] T030 [P] [US3] Add failing explicit-version contract coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Version.Contract.Tests.ps1
-- [ ] T031 [P] [US3] Add failing explicit-version integration coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.VersionSelection.Tests.ps1
-- [ ] T032 [US3] Run failing-first explicit-version tests in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Resolve-ModuleVersionContext.Version.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Version.Contract.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.VersionSelection.Tests.ps1
+- [X] T029 [P] [US3] Add failing explicit-version unit coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Resolve-ModuleVersionContext.Version.Tests.ps1
+- [X] T030 [P] [US3] Add failing explicit-version contract coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Version.Contract.Tests.ps1
+- [X] T031 [P] [US3] Add failing explicit-version integration coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.VersionSelection.Tests.ps1
+- [X] T032 [US3] Run failing-first explicit-version tests in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Resolve-ModuleVersionContext.Version.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Version.Contract.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.VersionSelection.Tests.ps1
 
 ### Implementation for User Story 3
 
-- [ ] T033 [P] [US3] Seed explicit-version fixtures in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/Az.Storage/4.1.0/Az.Storage.psd1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/Az.Storage/invalid-version.txt
-- [ ] T034 [US3] Implement explicit target-version and baseline resolution in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Resolve-ModuleVersionContext.ps1
-- [ ] T035 [US3] Implement isolated explicit-version surface export and InvalidTargetVersion failures in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Export-ModuleSurface.ps1
-- [ ] T036 [US3] Update version labels and error propagation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/New-UpgradeImpactReport.ps1
-- [ ] T037 [US3] Run explicit-version validation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Resolve-ModuleVersionContext.Version.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Version.Contract.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.VersionSelection.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
+- [X] T033 [P] [US3] Seed explicit-version fixtures in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/Az.Storage/4.1.0/Az.Storage.psd1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/modules/Az.Storage/invalid-version.txt
+- [X] T034 [US3] Implement explicit target-version and baseline resolution in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Resolve-ModuleVersionContext.ps1
+- [X] T035 [US3] Implement isolated explicit-version surface export and InvalidTargetVersion failures in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/Export-ModuleSurface.ps1
+- [X] T036 [US3] Update version labels and error propagation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1 and /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Private/New-UpgradeImpactReport.ps1
+- [X] T037 [US3] Run explicit-version validation in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit/Resolve-ModuleVersionContext.Version.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract/Find-ModuleUpgradeImpact.Version.Contract.Tests.ps1, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.VersionSelection.Tests.ps1, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
 
 **Checkpoint**: User Story 3 independently validates explicit-version targeting and invalid-version error handling.
 
@@ -116,10 +116,10 @@
 
 **Purpose**: Finish cross-story quality work, documentation, and final regression coverage before review.
 
-- [ ] T038 [P] Add mixed-result regression coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.MixedResults.Tests.ps1
-- [ ] T039 [P] Add comment-based help and examples in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1
-- [ ] T040 [P] Document module usage and reviewer validation commands in /Users/scott/code/github/pwshaddict/PsModuleMigrator/README.md
-- [ ] T041 Run full validation for /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
+- [X] T038 [P] Add mixed-result regression coverage in /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration/Find-ModuleUpgradeImpact.MixedResults.Tests.ps1
+- [X] T039 [P] Add comment-based help and examples in /Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1
+- [X] T040 [P] Document module usage and reviewer validation commands in /Users/scott/code/github/pwshaddict/PsModuleMigrator/README.md
+- [X] T041 Run full validation for /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/unit, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/contract, /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/integration, and /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/Invoke-Coverage.ps1
 
 ---
 
@@ -234,7 +234,7 @@ Task: T033 /Users/scott/code/github/pwshaddict/PsModuleMigrator/tests/fixtures/m
 
 ## Notes
 
-- Every checklist item follows the required `- [ ] T### [P?] [US#?] Description with exact file path` format.
+- Every checklist item follows the required `- [X] T### [P?] [US#?] Description with exact file path` format.
 - `[P]` tasks are limited to work on distinct files with no incomplete prerequisite dependency.
 - Each user story includes explicit failing-first tests, independent validation criteria, and a coverage gate task.
 - The planned source layout remains rooted at `/Users/scott/code/github/pwshaddict/PsModuleMigrator/src/PsModuleMigrator` and `/Users/scott/code/github/pwshaddict/PsModuleMigrator/tests`.

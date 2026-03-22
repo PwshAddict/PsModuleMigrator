@@ -1,0 +1,10 @@
+# PowerShell and repository defaults
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+coverage/
+*.coverage.xml
