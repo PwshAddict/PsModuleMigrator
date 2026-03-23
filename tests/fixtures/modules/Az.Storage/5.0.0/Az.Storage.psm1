@@ -1,32 +1,18 @@
 <#
-.SYNOPSIS
-Provides the PowerShell logic in `tests/fixtures/modules/Az.Storage/5.0.0/Az.Storage.psm1`.
-
-.DESCRIPTION
-Contains test or fixture PowerShell logic for `tests/fixtures/modules/Az.Storage/5.0.0/Az.Storage.psm1`.
-#>
-
-
-<#
 
 .SYNOPSIS
-
-Gets Az storage container.
-
+Returns a storage container from the test fixture module.
 
 .DESCRIPTION
-
-Provides comment-based help for `Get-AzStorageContainer`.
+Implements the fixture version of Get-AzStorageContainer used by tests.
 
 
 .PARAMETER Name
-
-Specifies the `Name` value.
+Optional container name used by the fixture function.
 
 
 .PARAMETER Context
-
-Specifies the `Context` value.
+Required storage context used by the fixture function.
 
 #>
 
@@ -44,23 +30,18 @@ function Get-AzStorageContainer {
 <#
 
 .SYNOPSIS
-
-Sets Az storage blob content.
-
+Sets blob content in the test fixture module.
 
 .DESCRIPTION
-
-Provides comment-based help for `Set-AzStorageBlobContent`.
+Implements the fixture version of Set-AzStorageBlobContent used by tests.
 
 
 .PARAMETER File
-
-Specifies the `File` value.
+Path to the source file for fixture blob upload behavior.
 
 
 .PARAMETER Container
-
-Specifies the `Container` value.
+Target container name for fixture blob upload behavior.
 
 #>
 
