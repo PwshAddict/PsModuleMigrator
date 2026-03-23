@@ -1,43 +1,26 @@
 <#
 .SYNOPSIS
-Provides the `Compare-ModuleSurface` private helper implementation.
+Compares two exported module surfaces and returns breaking-change descriptors.
 
 .DESCRIPTION
-Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Compare-ModuleSurface.ps1`.
-#>
-
-
-<#
-
-.SYNOPSIS
-
-Compares Module surface.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `Compare-ModuleSurface`.
-
+Compares commands, parameters, and aliases between a baseline module surface and
+a target module surface. Returns a list of change descriptors for removals and
+new mandatory parameters that may break existing scripts.
 
 .PARAMETER BaselineSurface
-
-Specifies the `BaselineSurface` value.
-
+The exported surface object for the baseline module version.
 
 .PARAMETER TargetSurface
-
-Specifies the `TargetSurface` value.
-
+The exported surface object for the target module version.
 
 .PARAMETER BaselineVersion
-
-Specifies the `BaselineVersion` value.
-
+The baseline module version label used in descriptor metadata.
 
 .PARAMETER TargetVersion
+The target module version label used in descriptor metadata.
 
-Specifies the `TargetVersion` value.
-
+.OUTPUTS
+System.Object[]
 #>
 
 
@@ -57,26 +40,18 @@ function Compare-ModuleSurface {
         [string]$TargetVersion
     )
     <#
-
     .SYNOPSIS
-
-    Gets Parameter map.
-
-    
+    Builds a lookup map for command parameters.
 
     .DESCRIPTION
-
-    Provides comment-based help for `Get-ParameterMap`.
-
-    
+    Flattens all parameter sets on a command into a hashtable keyed by parameter
+    name and tracks whether each parameter is mandatory in any set.
 
     .PARAMETER Command
-
-    Specifies the `Command` value.
-
+    The command metadata object that contains parameter set information.
     #>
 
-
+}
     function Get-ParameterMap {
         param([psobject]$Command)
 
