@@ -1,63 +1,38 @@
 <#
 .SYNOPSIS
-Provides the `New-UpgradeImpactReport` private helper implementation.
+Constructs the analysis request metadata object passed through the pipeline.
 
 .DESCRIPTION
-Contains repository PowerShell logic for `src/PsModuleMigrator/Private/New-UpgradeImpactReport.ps1`.
-#>
-
-
-<#
-
-.SYNOPSIS
-
-Creates Analysis request.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `New-AnalysisRequest`.
-
+Builds a PSCustomObject that captures the correlated request identity, module
+name, resolved version pair, target path kind, and timestamp. This object is
+passed to New-UpgradeImpactReport to anchor the final report.
 
 .PARAMETER RequestId
-
-Specifies the `RequestId` value.
-
+The correlation GUID for this analysis run.
 
 .PARAMETER ModuleName
-
-Specifies the `ModuleName` value.
-
+The PowerShell module name being analyzed.
 
 .PARAMETER TargetKind
-
-Specifies the `TargetKind` value.
-
+How the analysis target was classified: 'File', 'Folder', or 'Repository'.
 
 .PARAMETER TargetPath
-
-Specifies the `TargetPath` value.
-
+The resolved absolute path that was analyzed.
 
 .PARAMETER ResolvedTargetVersion
-
-Specifies the `ResolvedTargetVersion` value.
-
+The version string of the target module (highest or explicitly requested).
 
 .PARAMETER BaselineVersion
-
-Specifies the `BaselineVersion` value.
-
+The version string of the baseline module (the next-lower discovered version).
 
 .PARAMETER TargetVersion
-
-Specifies the `TargetVersion` value.
-
+The raw version string supplied by the caller, if any.
 
 .PARAMETER RequestedAtUtc
+The UTC timestamp when the analysis was initiated.
 
-Specifies the `RequestedAtUtc` value.
-
+.OUTPUTS
+System.Management.Automation.PSCustomObject
 #>
 
 
@@ -102,36 +77,29 @@ function New-AnalysisRequest {
     }
 }
 <#
-
 .SYNOPSIS
-
-Creates Breaking change finding.
-
+Creates a single breaking-change finding from a descriptor and a source reference.
 
 .DESCRIPTION
-
-Provides comment-based help for `New-BreakingChangeFinding`.
-
+Combines a breaking-change descriptor (from Compare-ModuleSurface) with an AST
+source reference (file path, line, column, source text) into a structured finding
+object. Attaches a stable FindingId composed of change type, file name, line number,
+and command name.
 
 .PARAMETER RequestId
-
-Specifies the `RequestId` value.
-
+The correlation GUID for the containing analysis run.
 
 .PARAMETER Descriptor
-
-Specifies the `Descriptor` value.
-
+The breaking-change descriptor produced by Compare-ModuleSurface.
 
 .PARAMETER Reference
-
-Specifies the `Reference` value.
-
+The source location where the affected command invocation was found.
 
 .PARAMETER Confidence
+'High' when the match is definitive; 'Medium' for heuristic matches.
 
-Specifies the `Confidence` value.
-
+.OUTPUTS
+System.Management.Automation.PSCustomObject
 #>
 
 
@@ -168,36 +136,29 @@ function New-BreakingChangeFinding {
     }
 }
 <#
-
 .SYNOPSIS
-
-Creates Upgrade impact report.
-
+Assembles the final upgrade impact report returned to the caller.
 
 .DESCRIPTION
-
-Provides comment-based help for `New-UpgradeImpactReport`.
-
+Combines the analysis request metadata, all collected findings, any warnings
+emitted during analysis, and the elapsed duration into the PSCustomObject
+returned by Find-ModuleUpgradeImpact. Sets Status to 'CompletedWithFindings'
+or 'CompletedWithoutFindings' based on finding count.
 
 .PARAMETER AnalysisRequest
-
-Specifies the `AnalysisRequest` value.
-
+The request metadata object produced by New-AnalysisRequest.
 
 .PARAMETER Findings
-
-Specifies the `Findings` value.
-
+The array of finding objects produced by Find-CodebaseModuleUsage. Defaults to empty.
 
 .PARAMETER Warnings
-
-Specifies the `Warnings` value.
-
+Any non-fatal warning strings collected during analysis. Defaults to empty.
 
 .PARAMETER DurationMs
+Total elapsed milliseconds for the analysis run.
 
-Specifies the `DurationMs` value.
-
+.OUTPUTS
+System.Management.Automation.PSCustomObject
 #>
 
 

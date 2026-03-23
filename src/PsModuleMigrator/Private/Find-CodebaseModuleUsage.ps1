@@ -1,48 +1,33 @@
 <#
 .SYNOPSIS
-Provides the `Find-CodebaseModuleUsage` private helper implementation.
+Scans PowerShell source files for usages of module commands that have breaking changes.
 
 .DESCRIPTION
-Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Find-CodebaseModuleUsage.ps1`.
-#>
-
-
-<#
-
-.SYNOPSIS
-
-Finds Codebase module usage.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `Find-CodebaseModuleUsage`.
-
+Parses each file in FilePaths using the PowerShell AST and matches every
+CommandAst against the provided breaking-change descriptors. Returns a list of
+BreakingChangeFinding objects for each invocation that is affected by a removed
+command, removed parameter, newly mandatory parameter, or alias removal.
+Also flags module-qualified command references (e.g. Az.Storage\Get-AzBlob) that
+are missing from the target surface.
 
 .PARAMETER ModuleName
-
-Specifies the `ModuleName` value.
-
+The module name used to identify module-qualified command references in source files.
 
 .PARAMETER FilePaths
-
-Specifies the `FilePaths` value.
-
+The list of .ps1 / .psm1 file paths to analyze. Duplicates are silently ignored.
 
 .PARAMETER BreakingChangeDescriptors
-
-Specifies the `BreakingChangeDescriptors` value.
-
+The breaking-change descriptors produced by Compare-ModuleSurface to match against.
 
 .PARAMETER TargetSurface
-
-Specifies the `TargetSurface` value.
-
+The exported surface of the target module version, used to validate module-qualified
+references that are not covered by a descriptor.
 
 .PARAMETER RequestId
+A correlation GUID attached to every finding produced by this invocation.
 
-Specifies the `RequestId` value.
-
+.OUTPUTS
+System.Object[]
 #>
 
 
@@ -65,26 +50,17 @@ function Find-CodebaseModuleUsage {
         [guid]$RequestId
     )
     <#
-
     .SYNOPSIS
-
-    Gets Normalized command name.
-
-    
+    Strips module-qualifier and scope prefixes from a raw command name.
 
     .DESCRIPTION
-
-    Provides comment-based help for `Get-NormalizedCommandName`.
-
-    
+    Removes a leading module qualifier (e.g. "Az.Storage\") and any scope
+    prefix (e.g. "script:") so the result can be matched against descriptor
+    command names.
 
     .PARAMETER CommandName
-
-    Specifies the `CommandName` value.
-
+    The raw command name string as returned by CommandAst.GetCommandName().
     #>
-
-
     function Get-NormalizedCommandName {
         param([Parameter(Mandatory)][string]$CommandName)
 

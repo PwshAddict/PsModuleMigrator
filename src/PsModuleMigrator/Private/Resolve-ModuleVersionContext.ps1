@@ -1,38 +1,26 @@
 <#
 .SYNOPSIS
-Provides the `Resolve-ModuleVersionContext` private helper implementation.
+Resolves the baseline and target module versions needed for a breaking-change analysis.
 
 .DESCRIPTION
-Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Resolve-ModuleVersionContext.ps1`.
-#>
-
-
-<#
-
-.SYNOPSIS
-
-Resolves Module version context.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `Resolve-ModuleVersionContext`.
-
+Discovers available versions of the named module from three sources in priority order:
+test fixtures, locally installed modules (Get-Module -ListAvailable), and PSResourceGet
+(Save-PSResource / Find-PSResource). Selects the highest available version as the target
+(or the explicitly requested TargetVersion) and the next-lower version as the baseline.
+Returns a context object with resolved paths, version strings, and a new RequestId.
 
 .PARAMETER ModuleName
-
-Specifies the `ModuleName` value.
-
+The PowerShell module name to resolve (e.g. "Az.Storage").
 
 .PARAMETER Path
-
-Specifies the `Path` value.
-
+The file, folder, or repository path to analyze. Normalized via ConvertTo-NormalizedPath.
 
 .PARAMETER TargetVersion
+Optional explicit target version string. When omitted, the highest discovered version
+is used as the target.
 
-Specifies the `TargetVersion` value.
-
+.OUTPUTS
+System.Management.Automation.PSCustomObject
 #>
 
 

@@ -1,28 +1,20 @@
 <#
 .SYNOPSIS
-Provides the `Get-AnalysisTargetFiles` private helper implementation.
+Resolves the set of PowerShell files to analyze from a given path.
 
 .DESCRIPTION
-Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Get-AnalysisTargetFiles.ps1`.
-#>
-
-
-<#
-
-.SYNOPSIS
-
-Gets Analysis target files.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `Get-AnalysisTargetFiles`.
-
+Accepts a file, folder, or git repository path and returns a result object
+containing the detected TargetKind ('File', 'Folder', or 'Repository'),
+the resolved path, and a list of .ps1/.psm1/.psd1 file paths to analyze.
+For git repositories, uses 'git ls-files' for accurate tracked-file enumeration
+and falls back to recursive file discovery if git is unavailable.
 
 .PARAMETER Path
+The analysis target: a single .ps1/.psm1/.psd1 file, a folder, or the root
+of a git repository.
 
-Specifies the `Path` value.
-
+.OUTPUTS
+System.Management.Automation.PSCustomObject
 #>
 
 
@@ -33,23 +25,11 @@ function Get-AnalysisTargetFiles {
         [string]$Path
     )
     <#
-
     .SYNOPSIS
-
-    Gets PowerShell files.
-
-    
-
-    .DESCRIPTION
-
-    Provides comment-based help for `Get-PowerShellFiles`.
-
-    
+    Recursively enumerates .ps1, .psm1, and .psd1 files under a directory.
 
     .PARAMETER RootPath
-
-    Specifies the `RootPath` value.
-
+    The root directory to search.
     #>
 
 
