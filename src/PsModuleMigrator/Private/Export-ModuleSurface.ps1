@@ -1,38 +1,23 @@
 <#
 .SYNOPSIS
-Provides the `Export-ModuleSurface` private helper implementation.
+Exports the public surface of a module version into a structured object.
 
 .DESCRIPTION
-Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Export-ModuleSurface.ps1`.
-#>
-
-
-<#
-
-.SYNOPSIS
-
-Exports Module surface.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `Export-ModuleSurface`.
-
+Imports the module from the given path in an isolated pwsh child process and
+captures its exported commands, parameter sets, and aliases as a JSON payload,
+then returns it as a PSCustomObject for downstream comparison.
 
 .PARAMETER ModuleName
-
-Specifies the `ModuleName` value.
-
+The name of the module to import and inspect.
 
 .PARAMETER ModulePath
-
-Specifies the `ModulePath` value.
-
+The full path to the .psd1 or .psm1 module manifest to load.
 
 .PARAMETER ModuleVersion
+The version label attached to the returned surface object for metadata purposes.
 
-Specifies the `ModuleVersion` value.
-
+.OUTPUTS
+System.Management.Automation.PSCustomObject
 #>
 
 
