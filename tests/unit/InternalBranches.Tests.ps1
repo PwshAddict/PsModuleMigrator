@@ -1,3 +1,12 @@
+<#
+.SYNOPSIS
+Provides the PowerShell logic in `tests/unit/InternalBranches.Tests.ps1`.
+
+.DESCRIPTION
+Contains test or fixture PowerShell logic for `tests/unit/InternalBranches.Tests.ps1`.
+#>
+
+
 Import-Module (Join-Path $PSScriptRoot '..' 'TestHelpers.psm1') -Force
 
 Describe 'Internal branch coverage' {

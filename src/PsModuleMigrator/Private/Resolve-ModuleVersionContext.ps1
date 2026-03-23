@@ -1,3 +1,41 @@
+<#
+.SYNOPSIS
+Provides the `Resolve-ModuleVersionContext` private helper implementation.
+
+.DESCRIPTION
+Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Resolve-ModuleVersionContext.ps1`.
+#>
+
+
+<#
+
+.SYNOPSIS
+
+Resolves Module version context.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Resolve-ModuleVersionContext`.
+
+
+.PARAMETER ModuleName
+
+Specifies the `ModuleName` value.
+
+
+.PARAMETER Path
+
+Specifies the `Path` value.
+
+
+.PARAMETER TargetVersion
+
+Specifies the `TargetVersion` value.
+
+#>
+
+
 function Resolve-ModuleVersionContext {
     [CmdletBinding()]
     param(

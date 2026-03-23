@@ -1,3 +1,41 @@
+<#
+.SYNOPSIS
+Provides the `Export-ModuleSurface` private helper implementation.
+
+.DESCRIPTION
+Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Export-ModuleSurface.ps1`.
+#>
+
+
+<#
+
+.SYNOPSIS
+
+Exports Module surface.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Export-ModuleSurface`.
+
+
+.PARAMETER ModuleName
+
+Specifies the `ModuleName` value.
+
+
+.PARAMETER ModulePath
+
+Specifies the `ModulePath` value.
+
+
+.PARAMETER ModuleVersion
+
+Specifies the `ModuleVersion` value.
+
+#>
+
+
 function Export-ModuleSurface {
     [CmdletBinding()]
     param(

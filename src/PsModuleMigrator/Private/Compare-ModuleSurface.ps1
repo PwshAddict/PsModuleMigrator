@@ -1,3 +1,46 @@
+<#
+.SYNOPSIS
+Provides the `Compare-ModuleSurface` private helper implementation.
+
+.DESCRIPTION
+Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Compare-ModuleSurface.ps1`.
+#>
+
+
+<#
+
+.SYNOPSIS
+
+Compares Module surface.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Compare-ModuleSurface`.
+
+
+.PARAMETER BaselineSurface
+
+Specifies the `BaselineSurface` value.
+
+
+.PARAMETER TargetSurface
+
+Specifies the `TargetSurface` value.
+
+
+.PARAMETER BaselineVersion
+
+Specifies the `BaselineVersion` value.
+
+
+.PARAMETER TargetVersion
+
+Specifies the `TargetVersion` value.
+
+#>
+
+
 function Compare-ModuleSurface {
     [CmdletBinding()]
     param(
@@ -13,6 +56,26 @@ function Compare-ModuleSurface {
         [Parameter(Mandatory)]
         [string]$TargetVersion
     )
+    <#
+
+    .SYNOPSIS
+
+    Gets Parameter map.
+
+    
+
+    .DESCRIPTION
+
+    Provides comment-based help for `Get-ParameterMap`.
+
+    
+
+    .PARAMETER Command
+
+    Specifies the `Command` value.
+
+    #>
+
 
     function Get-ParameterMap {
         param([psobject]$Command)

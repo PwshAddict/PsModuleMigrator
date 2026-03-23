@@ -1,9 +1,57 @@
+<#
+.SYNOPSIS
+Provides the `Get-AnalysisTargetFiles` private helper implementation.
+
+.DESCRIPTION
+Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Get-AnalysisTargetFiles.ps1`.
+#>
+
+
+<#
+
+.SYNOPSIS
+
+Gets Analysis target files.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Get-AnalysisTargetFiles`.
+
+
+.PARAMETER Path
+
+Specifies the `Path` value.
+
+#>
+
+
 function Get-AnalysisTargetFiles {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
         [string]$Path
     )
+    <#
+
+    .SYNOPSIS
+
+    Gets PowerShell files.
+
+    
+
+    .DESCRIPTION
+
+    Provides comment-based help for `Get-PowerShellFiles`.
+
+    
+
+    .PARAMETER RootPath
+
+    Specifies the `RootPath` value.
+
+    #>
+
 
     function Get-PowerShellFiles {
         param([Parameter(Mandatory)][string]$RootPath)

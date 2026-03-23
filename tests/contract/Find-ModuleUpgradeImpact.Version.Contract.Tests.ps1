@@ -1,3 +1,12 @@
+<#
+.SYNOPSIS
+Provides the PowerShell logic in `tests/contract/Find-ModuleUpgradeImpact.Version.Contract.Tests.ps1`.
+
+.DESCRIPTION
+Contains test or fixture PowerShell logic for `tests/contract/Find-ModuleUpgradeImpact.Version.Contract.Tests.ps1`.
+#>
+
+
 Import-Module (Join-Path $PSScriptRoot '..' 'TestHelpers.psm1') -Force
 
 Describe 'Find-ModuleUpgradeImpact version contract' {

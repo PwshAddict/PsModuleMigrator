@@ -1,9 +1,45 @@
+<#
+.SYNOPSIS
+Provides shared helpers for PsModuleMigrator tests.
+
+.DESCRIPTION
+Contains test or fixture PowerShell logic for `tests/TestHelpers.psm1`.
+#>
+
+
+<#
+
+.SYNOPSIS
+
+Gets Repository root.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Get-RepositoryRoot`.
+
+#>
+
+
 function Get-RepositoryRoot {
     [CmdletBinding()]
     param()
 
     return Split-Path -Parent $PSScriptRoot
 }
+<#
+
+.SYNOPSIS
+
+Gets Module manifest path.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Get-ModuleManifestPath`.
+
+#>
+
 
 function Get-ModuleManifestPath {
     [CmdletBinding()]
@@ -11,6 +47,20 @@ function Get-ModuleManifestPath {
 
     return Join-Path (Get-RepositoryRoot) 'src/PsModuleMigrator/PsModuleMigrator.psd1'
 }
+        <#
+
+        .SYNOPSIS
+
+        Imports Test module.
+
+        
+
+        .DESCRIPTION
+
+        Provides comment-based help for `Import-TestModule`.
+
+        #>
+
 
         function Import-TestModule {
             [CmdletBinding()]
@@ -18,6 +68,24 @@ function Get-ModuleManifestPath {
 
             Import-Module (Get-ModuleManifestPath) -Force -Global
         }
+<#
+
+.SYNOPSIS
+
+Gets Fixture path.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Get-FixturePath`.
+
+
+.PARAMETER RelativePath
+
+Specifies the `RelativePath` value.
+
+#>
+
 
 function Get-FixturePath {
     [CmdletBinding()]
@@ -28,6 +96,24 @@ function Get-FixturePath {
 
     return Join-Path (Join-Path (Get-RepositoryRoot) 'tests/fixtures') $RelativePath
 }
+<#
+
+.SYNOPSIS
+
+Initializes Fixture repository.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Initialize-FixtureRepository`.
+
+
+.PARAMETER RepositoryPath
+
+Specifies the `RepositoryPath` value.
+
+#>
+
 
 function Initialize-FixtureRepository {
     [CmdletBinding()]
@@ -49,6 +135,29 @@ function Initialize-FixtureRepository {
     & git -C $RepositoryPath add . | Out-Null
     return $RepositoryPath
 }
+<#
+
+.SYNOPSIS
+
+Creates Temporary powershell fixture.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `New-TemporaryPowerShellFixture`.
+
+
+.PARAMETER Name
+
+Specifies the `Name` value.
+
+
+.PARAMETER Files
+
+Specifies the `Files` value.
+
+#>
+
 
 function New-TemporaryPowerShellFixture {
     [CmdletBinding()]

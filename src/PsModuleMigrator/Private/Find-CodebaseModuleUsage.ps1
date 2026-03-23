@@ -1,3 +1,51 @@
+<#
+.SYNOPSIS
+Provides the `Find-CodebaseModuleUsage` private helper implementation.
+
+.DESCRIPTION
+Contains repository PowerShell logic for `src/PsModuleMigrator/Private/Find-CodebaseModuleUsage.ps1`.
+#>
+
+
+<#
+
+.SYNOPSIS
+
+Finds Codebase module usage.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Find-CodebaseModuleUsage`.
+
+
+.PARAMETER ModuleName
+
+Specifies the `ModuleName` value.
+
+
+.PARAMETER FilePaths
+
+Specifies the `FilePaths` value.
+
+
+.PARAMETER BreakingChangeDescriptors
+
+Specifies the `BreakingChangeDescriptors` value.
+
+
+.PARAMETER TargetSurface
+
+Specifies the `TargetSurface` value.
+
+
+.PARAMETER RequestId
+
+Specifies the `RequestId` value.
+
+#>
+
+
 function Find-CodebaseModuleUsage {
     [CmdletBinding()]
     param(
@@ -16,6 +64,26 @@ function Find-CodebaseModuleUsage {
         [Parameter(Mandatory)]
         [guid]$RequestId
     )
+    <#
+
+    .SYNOPSIS
+
+    Gets Normalized command name.
+
+    
+
+    .DESCRIPTION
+
+    Provides comment-based help for `Get-NormalizedCommandName`.
+
+    
+
+    .PARAMETER CommandName
+
+    Specifies the `CommandName` value.
+
+    #>
+
 
     function Get-NormalizedCommandName {
         param([Parameter(Mandatory)][string]$CommandName)

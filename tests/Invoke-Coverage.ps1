@@ -1,3 +1,12 @@
+<#
+.SYNOPSIS
+Runs the PsModuleMigrator Pester coverage gate.
+
+.DESCRIPTION
+Contains test or fixture PowerShell logic for `tests/Invoke-Coverage.ps1`.
+#>
+
+
 Import-Module (Join-Path $PSScriptRoot 'TestHelpers.psm1') -Force
 Import-TestModule
 

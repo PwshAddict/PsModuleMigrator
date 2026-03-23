@@ -1,3 +1,66 @@
+<#
+.SYNOPSIS
+Provides the `New-UpgradeImpactReport` private helper implementation.
+
+.DESCRIPTION
+Contains repository PowerShell logic for `src/PsModuleMigrator/Private/New-UpgradeImpactReport.ps1`.
+#>
+
+
+<#
+
+.SYNOPSIS
+
+Creates Analysis request.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `New-AnalysisRequest`.
+
+
+.PARAMETER RequestId
+
+Specifies the `RequestId` value.
+
+
+.PARAMETER ModuleName
+
+Specifies the `ModuleName` value.
+
+
+.PARAMETER TargetKind
+
+Specifies the `TargetKind` value.
+
+
+.PARAMETER TargetPath
+
+Specifies the `TargetPath` value.
+
+
+.PARAMETER ResolvedTargetVersion
+
+Specifies the `ResolvedTargetVersion` value.
+
+
+.PARAMETER BaselineVersion
+
+Specifies the `BaselineVersion` value.
+
+
+.PARAMETER TargetVersion
+
+Specifies the `TargetVersion` value.
+
+
+.PARAMETER RequestedAtUtc
+
+Specifies the `RequestedAtUtc` value.
+
+#>
+
+
 function New-AnalysisRequest {
     [CmdletBinding()]
     param(
@@ -38,6 +101,39 @@ function New-AnalysisRequest {
         RequestedAtUtc         = $RequestedAtUtc
     }
 }
+<#
+
+.SYNOPSIS
+
+Creates Breaking change finding.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `New-BreakingChangeFinding`.
+
+
+.PARAMETER RequestId
+
+Specifies the `RequestId` value.
+
+
+.PARAMETER Descriptor
+
+Specifies the `Descriptor` value.
+
+
+.PARAMETER Reference
+
+Specifies the `Reference` value.
+
+
+.PARAMETER Confidence
+
+Specifies the `Confidence` value.
+
+#>
+
 
 function New-BreakingChangeFinding {
     [CmdletBinding()]
@@ -71,6 +167,39 @@ function New-BreakingChangeFinding {
         SuggestedRemediation = $Descriptor.SuggestedRemediation
     }
 }
+<#
+
+.SYNOPSIS
+
+Creates Upgrade impact report.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `New-UpgradeImpactReport`.
+
+
+.PARAMETER AnalysisRequest
+
+Specifies the `AnalysisRequest` value.
+
+
+.PARAMETER Findings
+
+Specifies the `Findings` value.
+
+
+.PARAMETER Warnings
+
+Specifies the `Warnings` value.
+
+
+.PARAMETER DurationMs
+
+Specifies the `DurationMs` value.
+
+#>
+
 
 function New-UpgradeImpactReport {
     [CmdletBinding()]

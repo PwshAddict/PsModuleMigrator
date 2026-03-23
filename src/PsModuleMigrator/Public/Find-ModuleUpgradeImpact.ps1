@@ -1,3 +1,41 @@
+<#
+.SYNOPSIS
+Provides the `Find-ModuleUpgradeImpact` public command implementation.
+
+.DESCRIPTION
+Contains repository PowerShell logic for `src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1`.
+#>
+
+
+<#
+
+.SYNOPSIS
+
+Finds Module upgrade impact.
+
+
+.DESCRIPTION
+
+Provides comment-based help for `Find-ModuleUpgradeImpact`.
+
+
+.PARAMETER ModuleName
+
+Specifies the `ModuleName` value.
+
+
+.PARAMETER Path
+
+Specifies the `Path` value.
+
+
+.PARAMETER TargetVersion
+
+Specifies the `TargetVersion` value.
+
+#>
+
+
 function Find-ModuleUpgradeImpact {
     [CmdletBinding()]
     param(
