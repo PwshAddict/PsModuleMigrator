@@ -1,26 +1,9 @@
-<#
-.SYNOPSIS
-Loads the PsModuleMigrator module implementation.
-
-.DESCRIPTION
-Contains repository PowerShell logic for `src/PsModuleMigrator/PsModuleMigrator.psm1`.
-#>
-
-
 Set-StrictMode -Version 3.0
 
 $script:ModuleRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 <#
-
 .SYNOPSIS
-
-Gets Ps module migrator repository root.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `Get-PsModuleMigratorRepositoryRoot`.
-
+Returns the repository root directory two levels above the module root.
 #>
 
 
@@ -31,24 +14,12 @@ function Get-PsModuleMigratorRepositoryRoot {
     return Split-Path -Parent (Split-Path -Parent $script:ModuleRoot)
 }
 <#
-
 .SYNOPSIS
-
-Converts Normalized path.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `ConvertTo-NormalizedPath`.
-
+Resolves a path string to its absolute, canonical form using Get-Item.
 
 .PARAMETER Path
-
-Specifies the `Path` value.
-
+The path string to normalize. Throws if the path does not exist.
 #>
-
-
 function ConvertTo-NormalizedPath {
     [CmdletBinding()]
     param(
@@ -60,34 +31,23 @@ function ConvertTo-NormalizedPath {
     return $item.FullName
 }
 <#
-
 .SYNOPSIS
-
-Creates Ps module migrator exception.
-
+Creates a typed exception carrying PsModuleMigrator error metadata.
 
 .DESCRIPTION
-
-Provides comment-based help for `New-PsModuleMigratorException`.
-
+Wraps the message in an InvalidOperationException and stamps ErrorId and
+Category into the exception's Data dictionary so callers can distinguish
+module-thrown errors from unexpected runtime exceptions.
 
 .PARAMETER Message
-
-Specifies the `Message` value.
-
+The human-readable error message.
 
 .PARAMETER ErrorId
-
-Specifies the `ErrorId` value.
-
+A short camelCase identifier for the error (e.g. 'InvalidTargetVersion').
 
 .PARAMETER Category
-
-Specifies the `Category` value.
-
+The ErrorCategory name string. Defaults to 'InvalidOperation'.
 #>
-
-
 function New-PsModuleMigratorException {
     [CmdletBinding()]
     param(
@@ -107,29 +67,15 @@ function New-PsModuleMigratorException {
     return $exception
 }
 <#
-
 .SYNOPSIS
-
-Creates Ps module migrator error record.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `New-PsModuleMigratorErrorRecord`.
-
+Builds an ErrorRecord from a PsModuleMigrator exception for use with ThrowTerminatingError.
 
 .PARAMETER Exception
-
-Specifies the `Exception` value.
-
+The exception produced by New-PsModuleMigratorException.
 
 .PARAMETER TargetObject
-
-Specifies the `TargetObject` value.
-
+The object being processed when the error occurred (attached to the ErrorRecord).
 #>
-
-
 function New-PsModuleMigratorErrorRecord {
     [CmdletBinding()]
     param(
