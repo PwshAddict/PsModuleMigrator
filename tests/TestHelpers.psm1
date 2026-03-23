@@ -3,20 +3,17 @@
 Provides shared helpers for PsModuleMigrator tests.
 
 .DESCRIPTION
-Contains test or fixture PowerShell logic for `tests/TestHelpers.psm1`.
+Provides helper functions used by unit, integration, and contract tests.
 #>
 
 
 <#
 
 .SYNOPSIS
-
-Gets Repository root.
-
+Returns the repository root path.
 
 .DESCRIPTION
-
-Provides comment-based help for `Get-RepositoryRoot`.
+Resolves the repository root relative to the tests directory.
 
 #>
 
@@ -30,13 +27,10 @@ function Get-RepositoryRoot {
 <#
 
 .SYNOPSIS
-
-Gets Module manifest path.
-
+Returns the module manifest path.
 
 .DESCRIPTION
-
-Provides comment-based help for `Get-ModuleManifestPath`.
+Builds the absolute path to the PsModuleMigrator module manifest.
 
 #>
 
@@ -47,42 +41,34 @@ function Get-ModuleManifestPath {
 
     return Join-Path (Get-RepositoryRoot) 'src/PsModuleMigrator/PsModuleMigrator.psd1'
 }
-        <#
-
-        .SYNOPSIS
-
-        Imports Test module.
-
-        
-
-        .DESCRIPTION
-
-        Provides comment-based help for `Import-TestModule`.
-
-        #>
-
-
-        function Import-TestModule {
-            [CmdletBinding()]
-            param()
-
-            Import-Module (Get-ModuleManifestPath) -Force -Global
-        }
 <#
 
 .SYNOPSIS
-
-Gets Fixture path.
-
+Imports the module under test.
 
 .DESCRIPTION
+Imports PsModuleMigrator from the manifest path into the global scope for tests.
 
-Provides comment-based help for `Get-FixturePath`.
+#>
+
+
+function Import-TestModule {
+    [CmdletBinding()]
+    param()
+
+    Import-Module (Get-ModuleManifestPath) -Force -Global
+}
+<#
+
+.SYNOPSIS
+Returns a fixture path under tests/fixtures.
+
+.DESCRIPTION
+Combines the repository root and a relative fixture path.
 
 
 .PARAMETER RelativePath
-
-Specifies the `RelativePath` value.
+Relative path under tests/fixtures.
 
 #>
 
@@ -99,18 +85,14 @@ function Get-FixturePath {
 <#
 
 .SYNOPSIS
-
-Initializes Fixture repository.
-
+Initializes a git repository fixture.
 
 .DESCRIPTION
-
-Provides comment-based help for `Initialize-FixtureRepository`.
+Ensures the fixture path exists, initializes git if needed, and stages all files.
 
 
 .PARAMETER RepositoryPath
-
-Specifies the `RepositoryPath` value.
+Path to a fixture repository directory.
 
 #>
 
@@ -138,23 +120,18 @@ function Initialize-FixtureRepository {
 <#
 
 .SYNOPSIS
-
-Creates Temporary powershell fixture.
-
+Creates a temporary PowerShell fixture directory.
 
 .DESCRIPTION
-
-Provides comment-based help for `New-TemporaryPowerShellFixture`.
+Creates a temporary directory and writes the requested fixture files.
 
 
 .PARAMETER Name
-
-Specifies the `Name` value.
+Name component used in the temporary directory path.
 
 
 .PARAMETER Files
-
-Specifies the `Files` value.
+List of relative file paths to create in the fixture.
 
 #>
 
