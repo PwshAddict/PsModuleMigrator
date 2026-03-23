@@ -1,13 +1,4 @@
 <#
-.SYNOPSIS
-Provides shared helpers for PsModuleMigrator tests.
-
-.DESCRIPTION
-Provides helper functions used by unit, integration, and contract tests.
-#>
-
-
-<#
 
 .SYNOPSIS
 Returns the repository root path.
