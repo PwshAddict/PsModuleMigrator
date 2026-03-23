@@ -1,38 +1,39 @@
 <#
 .SYNOPSIS
-Provides the `Find-ModuleUpgradeImpact` public command implementation.
+Analyzes a PowerShell codebase for breaking changes introduced by a module upgrade.
 
 .DESCRIPTION
-Contains repository PowerShell logic for `src/PsModuleMigrator/Public/Find-ModuleUpgradeImpact.ps1`.
-#>
+Identifies which commands, parameters, and aliases in your scripts will be affected
+when upgrading a PowerShell module from one version to another. The function:
 
-
-<#
-
-.SYNOPSIS
-
-Finds Module upgrade impact.
-
-
-.DESCRIPTION
-
-Provides comment-based help for `Find-ModuleUpgradeImpact`.
-
+  1. Resolves the baseline and target module versions (from fixtures, installed modules,
+     or PSResourceGet).
+  2. Exports the public surface of both versions in isolated child processes.
+  3. Compares the surfaces to produce breaking-change descriptors (removed commands,
+     removed parameters, newly mandatory parameters, removed aliases).
+  4. Scans the target path (file, folder, or git repository) using the PowerShell AST
+     and matches every command invocation against the descriptors.
+  5. Returns a structured report with per-finding detail and remediation guidance.
 
 .PARAMETER ModuleName
-
-Specifies the `ModuleName` value.
-
+The name of the PowerShell module to analyze (e.g. "Az.Storage").
 
 .PARAMETER Path
-
-Specifies the `Path` value.
-
+The file, folder, or git repository root to scan for module usage.
 
 .PARAMETER TargetVersion
+Optional. The specific module version to treat as the upgrade target. When omitted,
+the highest available version is used as the target and the next-lower version as
+the baseline.
 
-Specifies the `TargetVersion` value.
+.OUTPUTS
+System.Management.Automation.PSCustomObject
 
+.EXAMPLE
+Find-ModuleUpgradeImpact -ModuleName Az.Storage -Path ./src
+
+.EXAMPLE
+Find-ModuleUpgradeImpact -ModuleName Az.Storage -Path ./src -TargetVersion 5.0.0
 #>
 
 
